@@ -1,0 +1,56 @@
+version: "3.1"
+
+stories:
+- story: greet and goodbye
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: greet and ask product info
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_product_info
+    entities:
+    - product_name: "گوشی موبایل"
+  - action: utter_product_info
+  - intent: thankyou
+  - action: utter_thankyou
+
+- story: ask shipping info
+  steps:
+  - intent: ask_shipping_info
+  - action: utter_shipping_info
+  - intent: ask_return_policy
+  - action: utter_return_policy
+
+- story: ask contact and payment info
+  steps:
+  - intent: ask_contact_info
+  - action: utter_contact_info
+  - intent: ask_payment_methods
+  - action: utter_payment_methods
+
+- story: ask for discount
+  steps:
+  - intent: ask_discount
+  - action: utter_ask_discount
+  - intent: thankyou
+  - action: utter_thankyou
+
+- story: bot challenge
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- story: ask for help
+  steps:
+  - intent: ask_for_help
+  - action: utter_help
+
+- story: out of scope query
+  steps:
+  - intent: out_of_scope
+  - action: utter_out_of_scope

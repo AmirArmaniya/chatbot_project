@@ -1,0 +1,22 @@
+# Configuration file for Rasa NLU endpoints
+
+# Action server endpoint configuration (if needed)
+action_endpoint:
+  url: "http://rasa:5055/webhook"
+
+# Tracker store configuration (using SQLite)
+tracker_store:
+  type: SQLTrackerStore
+  dialect: "sqlite"
+  db: "/app/data/rasa.db"
+  username: 
+  password: 
+  login_db: 
+
+# Event broker configuration
+#event_broker:
+#  type: pika
+#  url: rasa
+#  username: guest
+#  password: guest
+#  queue: rasa_events

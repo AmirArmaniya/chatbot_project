@@ -1,0 +1,82 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - thankyou
+  - bot_challenge
+  - ask_product_info
+  - ask_shipping_info
+  - ask_return_policy
+  - ask_contact_info
+  - ask_payment_methods
+  - ask_discount
+  - ask_for_help
+  - out_of_scope
+
+entities:
+  - product_name
+  - product_category
+  - shipping_method
+  - payment_method
+  - tenant_id
+
+slots:
+  tenant_id:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+  product_name:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: product_name
+  product_category:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: product_category
+  user_name:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+responses:
+  utter_greet:
+    - text: "سلام! چطور می‌توانم به شما کمک کنم؟"
+  utter_goodbye:
+    - text: "خداحافظ! روز خوبی داشته باشید."
+  utter_affirm:
+    - text: "بله، درسته."
+  utter_deny:
+    - text: "متوجه شدم."
+  utter_thankyou:
+    - text: "خواهش می‌کنم. کار دیگری هست که بتوانم انجام دهم؟"
+  utter_iamabot:
+    - text: "من یک ربات هستم که برای کمک به مشتریان طراحی شده‌ام."
+  utter_product_info:
+    - text: "برای دریافت اطلاعات بیشتر در مورد {product_name}، لطفاً به بخش محصولات مراجعه کنید یا سوال خود را مطرح نمایید."
+  utter_shipping_info:
+    - text: "اطلاعات ارسال محصولات ما به این صورت است: محصولات معمولاً بین ۲ تا ۵ روز کاری به دست شما می‌رسند. برای اطلاعات بیشتر می‌توانید به بخش راهنمای ارسال مراجعه کنید."
+  utter_return_policy:
+    - text: "سیاست بازگشت محصولات ما: شما می‌توانید تا ۷ روز پس از دریافت محصول، در صورت عدم رضایت آن را مرجوع کنید. برای اطلاعات بیشتر به بخش راهنمای بازگشت مراجعه کنید."
+  utter_contact_info:
+    - text: "شما می‌توانید از طریق شماره تلفن ۰۲۱-XXXXXXXX یا ایمیل info@example.com با ما در تماس باشید."
+  utter_payment_methods:
+    - text: "روش‌های پرداخت ما شامل پرداخت آنلاین با کارت بانکی، پرداخت در محل و کیف پول الکترونیکی است."
+  utter_ask_discount:
+    - text: "برای اطلاع از تخفیف‌های فعلی می‌توانید به بخش پیشنهادات ویژه در سایت مراجعه کنید."
+  utter_help:
+    - text: "من می‌توانم به سوالات شما درباره محصولات، ارسال، بازگشت محصول، روش‌های پرداخت و سایر موارد مربوط به خرید پاسخ دهم. لطفاً سوال خود را مطرح کنید."
+  utter_out_of_scope:
+    - text: "متأسفانه نمی‌توانم به این سوال پاسخ دهم. می‌توانید سوال دیگری بپرسید یا با پشتیبانی ما تماس بگیرید."
+
+session_config:
+  session_expiration_time: 60  # in minutes
+  carry_over_slots_to_new_session: true

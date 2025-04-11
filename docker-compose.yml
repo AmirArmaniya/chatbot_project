@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  # Rasa server service
+  rasa:
+    build:
+      context: ./rasa
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - ./rasa/models:/app/models
+      - ./rasa/data:/app/data
+      - ./logs/rasa:/app/logs
+      - ./data:/app/data
+    ports:
+      - "5005:5005"
+    environment:
+      - PYTHONPATH=/app
+    command: ["run", "--enable-api", "--cors", "*", "--debug"]
+    networks:
+      - chatbot-network
+    deploy:
+      resources:
+        limits:
+          memory: 3G
+
+  # Flask API service
+  flask:
+    build:
+      context: ./flask
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - ./flask:/app
+      - ./data:/app/data
+      - ./logs:/app/logs
+    ports:
+      - "8000:8000"
+    depends_on:
+      - rasa
+    environment:
+      - RASA_URL=http://rasa:5005
+      - FLASK_ENV=production
+    networks:
+      - chatbot-network
+
+networks:
+  chatbot-network:
+    driver: bridge

@@ -1,0 +1,47 @@
+version: "3.1"
+
+rules:
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: Thank user anytime they say thanks
+  steps:
+  - intent: thankyou
+  - action: utter_thankyou
+
+- rule: Respond to out of scope messages
+  steps:
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+
+- rule: Respond to shipping info requests
+  steps:
+  - intent: ask_shipping_info
+  - action: utter_shipping_info
+
+- rule: Respond to return policy requests
+  steps:
+  - intent: ask_return_policy
+  - action: utter_return_policy
+
+- rule: Respond to contact info requests
+  steps:
+  - intent: ask_contact_info
+  - action: utter_contact_info
+
+- rule: Respond to payment method inquiries
+  steps:
+  - intent: ask_payment_methods
+  - action: utter_payment_methods
+
+- rule: Respond to discount inquiries
+  steps:
+  - intent: ask_discount
+  - action: utter_ask_discount
